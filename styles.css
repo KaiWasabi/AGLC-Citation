@@ -223,3 +223,18 @@ footer a:hover {
 .citation-fields {
     display: none;
 }
+
+.beta-banner {
+    background-color: #ff4d4d; /* Bright red background */
+    color: white;              /* White text */
+    text-align: center;        /* Center the text */
+    padding: 15px;             /* Add padding for better spacing */
+    font-size: 16px;           /* Adjust font size */
+    font-weight: bold;         /* Make the text bold */
+    position: fixed;           /* Fix the banner to the top of the page */
+    top: 0;                    /* Align it to the top */
+    width: 100%;               /* Make it span the entire width of the page */
+    z-index: 1000;             /* Ensure it stays on top of other elements */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
