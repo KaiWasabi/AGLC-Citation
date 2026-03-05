@@ -143,37 +143,51 @@ footer a:hover {
     text-decoration: none;
 }
 
-.disclaimer-note {
-    font-size: 12px;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-#privacy-policy-modal, #equity-statement-modal {
+.modal-overlay {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 2000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    box-sizing: border-box;
 }
 
 .modal-content {
     background-color: white;
-    padding: 20px;
+    padding: 30px;
     border-radius: 8px;
-    max-width: 500px;
+    max-width: 600px;
+    width: 100%;
     margin: auto;
     text-align: left;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .modal-content h2 {
     margin-top: 0;
+}
+
+.modal-content h3 {
+    margin-top: 18px;
+    margin-bottom: 6px;
+    font-size: 15px;
+}
+
+.modal-content p, .modal-content li {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.modal-content ul {
+    padding-left: 20px;
 }
 
 .modal-content button {
@@ -190,18 +204,20 @@ footer a:hover {
     background-color: #0056b3;
 }
 
-.delete-button {
-    background-color: #dc3545; /* Red */
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    margin-right: 5px;
-    cursor: pointer;
+.disclaimer-modal-content {
+    max-height: 85vh;
 }
 
-.delete-button:hover {
-    background-color: #c82333;
+#accept-disclaimer {
+    background-color: #28a745;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    padding: 12px;
+}
+
+#accept-disclaimer:hover {
+    background-color: #218838;
 }
 
 #export-citations {

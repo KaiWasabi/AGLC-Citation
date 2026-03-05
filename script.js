@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let citation = '';
 
         if (sourceType === 'case-domestic') {
+            // AGLC4 Rule 2: Case Name (Year) Volume Report Series Starting Page (Court)
             const caseName = document.getElementById('case-domestic-name').value.trim();
             const reportSeries = document.getElementById('case-domestic-report').value.trim();
             const year = document.getElementById('case-domestic-year').value.trim();
@@ -60,15 +61,17 @@ document.addEventListener('DOMContentLoaded', function () {
             const pinpointPage = document.getElementById('case-domestic-pinpoint-page').value.trim();
             const pinpointParagraph = document.getElementById('case-domestic-pinpoint-paragraph').value.trim();
 
-            if (caseName && reportSeries && year && volume && startingPage && court) {
-                citation = `<i>${caseName}</i> (${year}) ${volume} <b>${reportSeries}</b> ${startingPage} (${court})`;
+            if (caseName && reportSeries && year && volume && startingPage) {
+                citation = `<i>${caseName}</i> (${year}) ${volume} ${reportSeries} ${startingPage}`;
                 if (document.getElementById('case-domestic-pinpoint-toggle').checked) {
                     if (pinpointPage) citation += `, ${pinpointPage}`;
                     if (pinpointParagraph) citation += ` [${pinpointParagraph}]`;
                 }
+                if (court) citation += ` (${court})`;
                 citation += '.';
             }
         } else if (sourceType === 'case-international') {
+            // AGLC4 Rule 2: Case Name (Year) Volume Report Series Starting Page (Court)
             const caseName = document.getElementById('case-international-name').value.trim();
             const reportSeries = document.getElementById('case-international-report').value.trim();
             const year = document.getElementById('case-international-year').value.trim();
@@ -81,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (caseName && reportSeries && year && court) {
                 citation = `<i>${caseName}</i> (${year})`;
                 if (volume) citation += ` ${volume}`;
-                if (reportSeries) citation += ` <b>${reportSeries}</b>`;
+                citation += ` ${reportSeries}`;
                 if (startingPage) citation += ` ${startingPage}`;
                 citation += ` (${court})`;
                 if (document.getElementById('case-international-pinpoint-toggle').checked) {
@@ -91,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 citation += '.';
             }
         } else if (sourceType === 'book') {
+            // AGLC4 Rule 6: Author, Title (Publisher, Edition ed, Year) Pinpoint
             const author = document.getElementById('book-author').value.trim();
             const title = document.getElementById('book-title').value.trim();
             const edition = document.getElementById('book-edition').value.trim();
@@ -99,13 +103,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const pinpointPage = document.getElementById('book-pinpoint-page').value.trim();
 
             if (author && title && year && publisher) {
-                citation = `${author}, <i>${title}</i> (${edition ? edition + ' ed, ' : ''}${publisher}, ${year})`;
+                citation = `${author}, <i>${title}</i> (${publisher}, ${edition ? edition + ' ed, ' : ''}${year})`;
                 if (document.getElementById('book-pinpoint-toggle').checked && pinpointPage) {
                     citation += ` ${pinpointPage}`;
                 }
                 citation += '.';
             }
         } else if (sourceType === 'journal') {
+            // AGLC4 Rule 5: Author, 'Title' (Year) Volume Journal Starting Page
             const author = document.getElementById('journal-author').value.trim();
             const title = document.getElementById('journal-title').value.trim();
             const journalName = document.getElementById('journal-name').value.trim();
@@ -122,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 citation += '.';
             }
         } else if (sourceType === 'legislation') {
+            // AGLC4 Rule 3.1: Title Year (Jurisdiction) — title in italics
             const title = document.getElementById('legislation-title').value.trim();
             const year = document.getElementById('legislation-year').value.trim();
             const jurisdiction = document.getElementById('legislation-jurisdiction').value.trim();
@@ -129,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const pinpointSubsection = document.getElementById('legislation-pinpoint-subsection').value.trim();
 
             if (title && year && jurisdiction) {
-                citation = `${title} ${year} (${jurisdiction})`;
+                citation = `<i>${title} ${year}</i> (${jurisdiction})`;
                 if (document.getElementById('legislation-pinpoint-toggle').checked) {
                     if (pinpointSection) citation += ` s ${pinpointSection}`;
                     if (pinpointSubsection) citation += `(${pinpointSubsection})`;
@@ -137,37 +143,45 @@ document.addEventListener('DOMContentLoaded', function () {
                 citation += '.';
             }
         } else if (sourceType === 'website') {
+            // AGLC4 Rule 7.15: Author, 'Document Title', Web Page Title (Document Type, Date) <URL>
             const author = document.getElementById('website-author').value.trim();
             const title = document.getElementById('website-title').value.trim();
             const websiteName = document.getElementById('website-name').value.trim();
-            const url = document.getElementById('website-url').value.trim();
+            const docType = document.getElementById('website-doctype').value.trim();
             const accessDate = document.getElementById('website-access-date').value.trim();
+            const url = document.getElementById('website-url').value.trim();
 
             if (title && websiteName && url && accessDate) {
-                citation = `${author ? author + ', ' : ''}'${title}', <i>${websiteName}</i> (${accessDate}) <${url}>.`;
+                citation = `${author ? author + ', ' : ''}'${title}', <i>${websiteName}</i>`;
+                citation += ` (${docType ? docType + ', ' : ''}${accessDate})`;
+                citation += ` &lt;${url}&gt;.`;
             }
         } else if (sourceType === 'newspaper') {
+            // AGLC4 Rule 7.11.1: Author, 'Title', Newspaper (Place, Date) Page
             const author = document.getElementById('newspaper-author').value.trim();
             const title = document.getElementById('newspaper-title').value.trim();
             const newspaperName = document.getElementById('newspaper-name').value.trim();
+            const place = document.getElementById('newspaper-place').value.trim();
             const date = document.getElementById('newspaper-date').value.trim();
             const page = document.getElementById('newspaper-page').value.trim();
 
-            if (title && newspaperName && date) {
-                citation = `${author ? author + ', ' : ''}'${title}', <i>${newspaperName}</i> (${date})${page ? ', ' + page : ''}.`;
+            if (title && newspaperName && place && date) {
+                citation = `${author ? author + ', ' : ''}'${title}', <i>${newspaperName}</i> (${place}, ${date})`;
+                if (page) citation += ` ${page}`;
+                citation += '.';
             }
         } else if (sourceType === 'conference-paper') {
+            // AGLC4 Rule 7.2.4: Author, 'Title' (Conference Paper, Forum, Date)
             const author = document.getElementById('conference-author').value.trim();
             const title = document.getElementById('conference-title').value.trim();
             const conferenceName = document.getElementById('conference-name').value.trim();
-            const location = document.getElementById('conference-location').value.trim();
             const date = document.getElementById('conference-date').value.trim();
-            const pages = document.getElementById('conference-pages').value.trim();
 
             if (author && title && conferenceName && date) {
-                citation = `${author}, '${title}' in <i>${conferenceName}</i> (${location ? location + ', ' : ''}${date})${pages ? ', ' + pages : ''}.`;
+                citation = `${author}, '${title}' (Conference Paper, ${conferenceName}, ${date}).`;
             }
         } else if (sourceType === 'thesis') {
+            // AGLC4 Rule 7.2.5: Author, 'Title' (Thesis Type, University, Year)
             const author = document.getElementById('thesis-author').value.trim();
             const title = document.getElementById('thesis-title').value.trim();
             const type = document.getElementById('thesis-type').value.trim();
@@ -175,26 +189,36 @@ document.addEventListener('DOMContentLoaded', function () {
             const year = document.getElementById('thesis-year').value.trim();
 
             if (author && title && type && university && year) {
-                citation = `${author}, <i>${title}</i> (${type}, ${university}, ${year}).`;
+                citation = `${author}, '${title}' (${type}, ${university}, ${year}).`;
             }
         } else if (sourceType === 'report') {
+            // AGLC4 Rule 7.1: Author, Title (Document Type No Number, Date) Pinpoint
             const author = document.getElementById('report-author').value.trim();
             const title = document.getElementById('report-title').value.trim();
-            const organization = document.getElementById('report-organization').value.trim();
-            const year = document.getElementById('report-year').value.trim();
+            const docType = document.getElementById('report-doctype').value.trim();
+            const docNum = document.getElementById('report-docnum').value.trim();
+            const date = document.getElementById('report-date').value.trim();
+            const pinpoint = document.getElementById('report-pinpoint').value.trim();
             const url = document.getElementById('report-url').value.trim();
 
-            if (title && organization && year) {
-                citation = `${author ? author + ', ' : ''}<i>${title}</i> (${organization}, ${year})${url ? ', ' + url : ''}.`;
+            if (title && docType && date) {
+                citation = `${author ? author + ', ' : ''}<i>${title}</i> (${docType}${docNum ? ' ' + docNum : ''}, ${date})`;
+                if (pinpoint) citation += ` ${pinpoint}`;
+                if (url) citation += ` &lt;${url}&gt;`;
+                citation += '.';
             }
         } else if (sourceType === 'encyclopedia') {
-            const title = document.getElementById('encyclopedia-title').value.trim();
+            // AGLC4 Rule 7.6: Dictionary Title (Edition ed, Year) 'Entry Title' (def Number)
             const name = document.getElementById('encyclopedia-name').value.trim();
             const edition = document.getElementById('encyclopedia-edition').value.trim();
             const year = document.getElementById('encyclopedia-year').value.trim();
+            const title = document.getElementById('encyclopedia-title').value.trim();
+            const def = document.getElementById('encyclopedia-def').value.trim();
 
             if (title && name && year) {
-                citation = `${title}, <i>${name}</i> (${edition ? edition + ' ed, ' : ''}${year}).`;
+                citation = `<i>${name}</i> (${edition ? edition + ' ed, ' : ''}${year}) '${title}'`;
+                if (def) citation += ` (def ${def})`;
+                citation += '.';
             }
         }
 
@@ -264,7 +288,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 return citation
                     .replace(/<\/?i>/g, '')   // Remove <i> and </i>
                     .replace(/<\/?b>/g, '')   // Remove <b> and </b>
-                    .replace(/<\/?u>/g, '');  // Remove <u> and </u>
+                    .replace(/<\/?u>/g, '')   // Remove <u> and </u>
+                    .replace(/&lt;/g, '<')    // Decode < entities
+                    .replace(/&gt;/g, '>')    // Decode > entities
+                    .replace(/&amp;/g, '&');  // Decode & entities
             }).join('\n\n'); // Separate citations by double newlines
     
             const blob = new Blob([plainTextCitations], { type: 'text/plain' });
@@ -286,21 +313,37 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    // Handle the Privacy Policy and Equity Statement modals
+    // Generic modal close
+    window.closeModal = function (modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    };
+
+    // Show disclaimer on first load (block usage until accepted)
+    if (!localStorage.getItem('disclaimerAccepted')) {
+        document.getElementById('disclaimer-modal').style.display = 'flex';
+    } else {
+        document.getElementById('disclaimer-modal').style.display = 'none';
+    }
+
+    document.getElementById('accept-disclaimer').addEventListener('click', function () {
+        localStorage.setItem('disclaimerAccepted', 'true');
+        document.getElementById('disclaimer-modal').style.display = 'none';
+    });
+
+    // Footer links to open modals
     document.getElementById('privacy-policy-link').addEventListener('click', function (event) {
         event.preventDefault();
-        document.getElementById('privacy-policy-modal').style.display = 'block';
+        document.getElementById('privacy-policy-modal').style.display = 'flex';
     });
 
     document.getElementById('equity-statement-link').addEventListener('click', function (event) {
         event.preventDefault();
-        document.getElementById('equity-statement-modal').style.display = 'block';
+        document.getElementById('equity-statement-modal').style.display = 'flex';
     });
 
-    document.querySelectorAll('.modal-content button').forEach(function (closeBtn) {
-        closeBtn.addEventListener('click', function () {
-            this.closest('.modal-content').parentElement.style.display = 'none';
-        });
+    document.getElementById('disclaimer-link').addEventListener('click', function (event) {
+        event.preventDefault();
+        document.getElementById('disclaimer-modal').style.display = 'flex';
     });
 
     // Display saved citations on page load

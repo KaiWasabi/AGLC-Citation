@@ -16,9 +16,6 @@
     </div>    
     <div class="header-offset">
         <h1>Kai's AGLC Citation Generator</h1>
-        <p class="disclaimer-note">By continuing to use this tool, you agree to the disclaimer.</p>
-        <p class="disclaimer-note">For bugs, feedback, or feature requests, email <a href="mailto:aglcfeedback@kaiwatanabe.com?subject=AGLC%20Citation%20Generator%20Feedback&body=Hi%20Kai,">aglcfeedback@kaiwatanabe.com</a></p>
-
         <form id="citation-form">
             <label for="source-type">Source Type <span class="required">*</span>:</label>
             <select id="source-type" name="source-type" required>
@@ -53,8 +50,8 @@
                 <label for="case-domestic-page">Starting Page <span class="required">*</span>:</label>
                 <input type="text" id="case-domestic-page" name="case-domestic-page" required>
 
-                <label for="case-domestic-court">Court <span class="required">*</span>:</label>
-                <input type="text" id="case-domestic-court" name="case-domestic-court" required>
+                <label for="case-domestic-court">Judge(s)/Court:</label>
+                <input type="text" id="case-domestic-court" name="case-domestic-court" placeholder="e.g. Dixon J">
 
                 <label>
                     <input type="checkbox" id="case-domestic-pinpoint-toggle"> Add Pinpoint Reference
@@ -188,29 +185,35 @@
                 <label for="website-author">Author (if any):</label>
                 <input type="text" id="website-author" name="website-author">
 
-                <label for="website-title">Title <span class="required">*</span>:</label>
+                <label for="website-title">Document Title <span class="required">*</span>:</label>
                 <input type="text" id="website-title" name="website-title" required>
 
                 <label for="website-name">Website Name <span class="required">*</span>:</label>
                 <input type="text" id="website-name" name="website-name" required>
 
+                <label for="website-doctype">Document Type:</label>
+                <input type="text" id="website-doctype" name="website-doctype" placeholder="e.g. Web Page, Blog Post" value="Web Page">
+
+                <label for="website-access-date">Date <span class="required">*</span>:</label>
+                <input type="text" id="website-access-date" name="website-access-date" placeholder="Select date" required>
+
                 <label for="website-url">URL <span class="required">*</span>:</label>
                 <input type="url" id="website-url" name="website-url" required>
-
-                <label for="website-access-date">Access Date <span class="required">*</span>:</label>
-                <input type="text" id="website-access-date" name="website-access-date" placeholder="Select date" required>
             </div>
 
             <!-- Newspaper Article Fields -->
             <div id="newspaper-fields" class="citation-fields">
-                <label for="newspaper-author">Author <span class="required">*</span>:</label>
+                <label for="newspaper-author">Author:</label>
                 <input type="text" id="newspaper-author" name="newspaper-author">
 
-                <label for="newspaper-title">Title <span class="required">*</span>:</label>
+                <label for="newspaper-title">Article Title <span class="required">*</span>:</label>
                 <input type="text" id="newspaper-title" name="newspaper-title" required>
 
                 <label for="newspaper-name">Newspaper Name <span class="required">*</span>:</label>
                 <input type="text" id="newspaper-name" name="newspaper-name" required>
+
+                <label for="newspaper-place">Place of Publication <span class="required">*</span>:</label>
+                <input type="text" id="newspaper-place" name="newspaper-place" required placeholder="e.g. Melbourne">
 
                 <label for="newspaper-date">Date <span class="required">*</span>:</label>
                 <input type="text" id="newspaper-date" name="newspaper-date" required>
@@ -224,20 +227,14 @@
                 <label for="conference-author">Author <span class="required">*</span>:</label>
                 <input type="text" id="conference-author" name="conference-author" required>
 
-                <label for="conference-title">Title <span class="required">*</span>:</label>
+                <label for="conference-title">Paper Title <span class="required">*</span>:</label>
                 <input type="text" id="conference-title" name="conference-title" required>
 
-                <label for="conference-name">Conference Name <span class="required">*</span>:</label>
+                <label for="conference-name">Conference/Forum Name <span class="required">*</span>:</label>
                 <input type="text" id="conference-name" name="conference-name" required>
-
-                <label for="conference-location">Location:</label>
-                <input type="text" id="conference-location" name="conference-location">
 
                 <label for="conference-date">Date <span class="required">*</span>:</label>
                 <input type="text" id="conference-date" name="conference-date" required>
-
-                <label for="conference-pages">Pages:</label>
-                <input type="text" id="conference-pages" name="conference-pages">
             </div>
 
             <!-- Thesis/Dissertation Fields -->
@@ -260,17 +257,23 @@
 
             <!-- Report Fields -->
             <div id="report-fields" class="citation-fields">
-                <label for="report-author">Author <span class="required">*</span>:</label>
-                <input type="text" id="report-author" name="report-author">
+                <label for="report-author">Author:</label>
+                <input type="text" id="report-author" name="report-author" placeholder="e.g. Australian Law Reform Commission">
 
                 <label for="report-title">Title <span class="required">*</span>:</label>
                 <input type="text" id="report-title" name="report-title" required>
 
-                <label for="report-organization">Organization <span class="required">*</span>:</label>
-                <input type="text" id="report-organization" name="report-organization" required>
+                <label for="report-doctype">Document Type <span class="required">*</span>:</label>
+                <input type="text" id="report-doctype" name="report-doctype" required placeholder="e.g. Report, Final Report, Discussion Paper">
 
-                <label for="report-year">Year <span class="required">*</span>:</label>
-                <input type="text" id="report-year" name="report-year" required>
+                <label for="report-docnum">Document/Series Number:</label>
+                <input type="text" id="report-docnum" name="report-docnum" placeholder="e.g. No 108">
+
+                <label for="report-date">Date <span class="required">*</span>:</label>
+                <input type="text" id="report-date" name="report-date" required placeholder="e.g. May 2008">
+
+                <label for="report-pinpoint">Pinpoint (page):</label>
+                <input type="text" id="report-pinpoint" name="report-pinpoint">
 
                 <label for="report-url">URL (if any):</label>
                 <input type="url" id="report-url" name="report-url">
@@ -278,10 +281,7 @@
 
             <!-- Encyclopedia/Dictionary Entry Fields -->
             <div id="encyclopedia-fields" class="citation-fields">
-                <label for="encyclopedia-title">Entry Title <span class="required">*</span>:</label>
-                <input type="text" id="encyclopedia-title" name="encyclopedia-title" required>
-
-                <label for="encyclopedia-name">Encyclopedia/Dictionary Name <span class="required">*</span>:</label>
+                <label for="encyclopedia-name">Dictionary/Encyclopedia Name <span class="required">*</span>:</label>
                 <input type="text" id="encyclopedia-name" name="encyclopedia-name" required>
 
                 <label for="encyclopedia-edition">Edition:</label>
@@ -289,6 +289,12 @@
 
                 <label for="encyclopedia-year">Year <span class="required">*</span>:</label>
                 <input type="text" id="encyclopedia-year" name="encyclopedia-year" required>
+
+                <label for="encyclopedia-title">Entry Title <span class="required">*</span>:</label>
+                <input type="text" id="encyclopedia-title" name="encyclopedia-title" required>
+
+                <label for="encyclopedia-def">Definition Number:</label>
+                <input type="text" id="encyclopedia-def" name="encyclopedia-def" placeholder="e.g. 4">
             </div>
 
             <!-- Buttons and Citation Display -->
@@ -312,34 +318,87 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 Kai Watanabe. All rights reserved. | 
+        <p>&copy; 2024 Kai Watanabe. All rights reserved. |
             <a href="#" id="privacy-policy-link">Privacy Policy</a> |
-            <a href="#" id="equity-statement-link">Equity Statement</a>
+            <a href="#" id="equity-statement-link">Equity Statement</a> |
+            <a href="#" id="disclaimer-link">Disclaimer</a>
         </p>
-        <div id="disclaimer-content">
-            <p>
-                DISCLAIMER: I strive to ensure that citations generated are AGLC compliant, but there may be some errors, and I take no responsibility for the wrongful generation of AGLC citations. 
-                Users are responsible for ensuring their citations are correct and give up all claims against the developer regarding citation errors. 
-                Additionally, due to technical limitations, data loss in the "Save Citation" feature is not the developer's responsibility.
-            </p>
-        </div>
     </footer>
 
+    <!-- Disclaimer Modal (shown on first load, must accept) -->
+    <div id="disclaimer-modal" class="modal-overlay">
+        <div class="modal-content disclaimer-modal-content">
+            <h2>Disclaimer &amp; Terms of Use</h2>
+            <p>Please read and accept the following before using this tool.</p>
+
+            <h3>No Warranty</h3>
+            <p>This tool is provided "as is" and "as available" without warranty of any kind, whether express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose or non-infringement. The developer makes no representations or guarantees that the citations generated by this tool are fully compliant with the <em>Australian Guide to Legal Citation</em> (4th ed, 2018) ("AGLC4") or any other citation standard.</p>
+
+            <h3>User Responsibility</h3>
+            <p>Users are solely responsible for verifying the accuracy and completeness of all citations generated by this tool. The developer accepts no liability for any loss, damage or adverse consequence arising from reliance on citations produced by this tool, including but not limited to academic penalties, professional sanctions or legal costs.</p>
+
+            <h3>Limitation of Liability</h3>
+            <p>To the maximum extent permitted by law, the developer excludes all liability for any direct, indirect, incidental, consequential or special damages arising out of or in connection with the use of this tool, including but not limited to data loss in the "Save Citation" feature.</p>
+
+            <h3>No Affiliation</h3>
+            <p>This tool is an independent project created by Kai Watanabe, a law student, as a personal educational resource. It is not affiliated with, endorsed by, or associated with The Australian National University, the Melbourne University Law Review Association, the Melbourne Journal of International Law, or any other institution. "AGLC" refers to the <em>Australian Guide to Legal Citation</em>, a publicly available citation guide.</p>
+
+            <h3>Intellectual Property</h3>
+            <p>This tool does not reproduce, distribute or display any copyrighted content from the AGLC4 publication. It is an independently developed utility that applies publicly known citation formatting conventions. All source code and design of this tool are the original work of the developer. Any trademarks or names referenced are the property of their respective owners and are used solely for descriptive purposes.</p>
+
+            <h3>Waiver of Claims</h3>
+            <p>By clicking "I Accept" below, you acknowledge that you have read, understood and agree to these terms. You waive any and all claims against the developer arising from or related to the use of this tool.</p>
+
+            <button type="button" id="accept-disclaimer">I Accept</button>
+        </div>
+    </div>
+
     <!-- Modal for Privacy Policy -->
-    <div id="privacy-policy-modal" style="display:none;">
+    <div id="privacy-policy-modal" class="modal-overlay" style="display:none;">
         <div class="modal-content">
             <h2>Privacy Policy</h2>
-            <p>I believe that privacy is a fundamental human right. I strive to collect as minimal information as possible. This tool stores citation data locally on your device using your browser's local storage. This data is not transmitted or shared with any external servers or third parties. I also strive to provide this tool for free, as I believe in access to education. Ads may be served in a non-intrusive way by Google Adsense. For detailed policy: www.kaiwatanabe.com/aglcprivacy</p>
-            <button onclick="closePrivacyPolicy()">Close</button>
+            <p><strong>Last updated:</strong> March 2026</p>
+
+            <h3>Overview</h3>
+            <p>Kai's AGLC Citation Generator ("this tool") is committed to protecting your privacy. This policy explains what information is collected, how it is used and your rights in relation to that information.</p>
+
+            <h3>Information We Collect</h3>
+            <p>This tool does not collect, transmit or store any personal information on external servers. Specifically:</p>
+            <ul>
+                <li><strong>Citation data:</strong> All citations you generate and save are stored exclusively in your browser's local storage on your own device. This data never leaves your device and is not accessible to the developer or any third party.</li>
+                <li><strong>Disclaimer acceptance:</strong> A record of whether you have accepted the disclaimer is stored in your browser's local storage. No personal identifiers are associated with this record.</li>
+                <li><strong>No accounts or registration:</strong> This tool does not require or support user accounts, logins or registration of any kind.</li>
+                <li><strong>No analytics or tracking:</strong> The developer does not use any first-party analytics, tracking pixels or similar technologies.</li>
+            </ul>
+
+            <h3>Third-Party Services</h3>
+            <ul>
+                <li><strong>Google AdSense:</strong> This tool uses Google AdSense to serve advertisements. Google may use cookies and similar technologies to serve ads based on your prior visits to this or other websites. You can opt out of personalised advertising by visiting <em>Google Ads Settings</em>. Google's use of advertising cookies is governed by Google's own privacy policy.</li>
+                <li><strong>Flatpickr:</strong> This tool loads the Flatpickr date picker library from a content delivery network (jsDelivr). This may result in your browser making requests to jsDelivr's servers, which are subject to jsDelivr's privacy policy.</li>
+            </ul>
+
+            <h3>Cookies</h3>
+            <p>This tool itself does not set any cookies. However, third-party services (such as Google AdSense) may set cookies in accordance with their own policies.</p>
+
+            <h3>Data Retention and Deletion</h3>
+            <p>All data stored by this tool resides in your browser's local storage. You can delete this data at any time by clearing your browser's local storage or site data for this website. The developer has no ability to access, retrieve or delete your locally stored data.</p>
+
+            <h3>Children's Privacy</h3>
+            <p>This tool is not directed at children under 13 years of age and does not knowingly collect information from children.</p>
+
+            <h3>Changes to This Policy</h3>
+            <p>This privacy policy may be updated from time to time. Any changes will be reflected on this page with an updated "Last updated" date.</p>
+
+            <button type="button" onclick="closeModal('privacy-policy-modal')">Close</button>
         </div>
     </div>
 
     <!-- Modal for Equity Statement -->
-    <div id="equity-statement-modal" style="display:none;">
+    <div id="equity-statement-modal" class="modal-overlay" style="display:none;">
         <div class="modal-content">
-            <h2>Our equity policy</h2>
-            <p>This website is constructed to be lightweight to accommodate slower internet speeds. This website will be provided for use free of charge.</p>
-            <button onclick="closeEquityStatement()">Close</button>
+            <h2>Equity Statement</h2>
+            <p>This website is constructed to be lightweight to accommodate slower internet speeds. This tool is and will remain free of charge, as the developer believes in equitable access to educational resources.</p>
+            <button type="button" onclick="closeModal('equity-statement-modal')">Close</button>
         </div>
     </div>
 
